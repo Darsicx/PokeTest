@@ -19,11 +19,18 @@ interface PokemonDao {
     fun insertPokemons(pokemons: List<PokemonEntity>): Completable
 
     /**
-     * Get an activity by id.
-     * @return the activity from the table with a specific id.
+     * Observe all pokemons.
+     * @return all the pokemons in the table.
      */
     @Query("SELECT * FROM Pokemon")
     fun getAllPokemons(): Flowable<List<PokemonEntity>>
+
+    /**
+     * Get all pokemons once.
+     * @return all the pokemons in the table.
+     */
+    @Query("SELECT * FROM Pokemon")
+    fun getAllPokemonsAtOnce(): Single<List<PokemonEntity>>
 
     /**
      * Delete all pokemons.

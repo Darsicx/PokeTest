@@ -11,6 +11,7 @@
         android:name="com.android.testclip.ui.pokemons.PokemonsFragment"
         android:label="PokemonsFragment"
         tools:layout="@layout/fragment_pokemons">
+
         <action
             android:id="@+id/action_pokemonsFragment_to_pokemonDetailFragment"
             app:destination="@id/pokemonDetailFragment" />
@@ -21,6 +22,10 @@
         android:name="com.android.testclip.ui.pokemon_detail.PokemonDetailFragment"
         android:label="PokemonDetailFragment"
         tools:layout="@layout/fragment_pokemon_detail">
+        <argument
+            android:name="pokemon_name"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/action_pokemonDetailFragment_to_pokemonAbilityFragment"
             app:destination="@id/pokemonAbilityFragment" />

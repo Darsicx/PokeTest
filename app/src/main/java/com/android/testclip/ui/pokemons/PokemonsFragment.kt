@@ -1,20 +1,76 @@
 package com.android.testclip.ui.pokemons
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonsBinding
+import com.android.testclip.di.ServiceLocator
+import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
 
-class PokemonsFragment: Fragment(R.layout.fragment_pokemons) {
+class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
 
     private var _binding: FragmentPokemonsBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var viewModelFactory: PokemonsViewModelFactory
+    private var pokemonsAdapter: PokemonsAdapter? = null
+
+    private val viewModel: PokemonsViewModel by viewModels { viewModelFactory }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModelFactory = ServiceLocator.providePokemonsViewModelFactory(this.requireContext())
+        viewModel.getPokemonsData()
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPokemonsBinding.bind(view)
 
+        setupPokemonsAdapter()
+        setupObservers()
+    }
+
+    private fun setupPokemonsAdapter() {
+        binding.rvPokemons.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        pokemonsAdapter = PokemonsAdapter()
+        binding.rvPokemons.adapter = pokemonsAdapter
+
+        pokemonsAdapter?.setListener { name, position ->
+            val direction =
+                PokemonsFragmentDirections.actionPokemonsFragmentToPokemonDetailFragment(pokemonName = name)
+            findNavController().navigate(direction)
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.pokemonsState.observe(this, { state ->
+            when (state) {
+                PokemonsViewModel.PokemonsState.LOADING -> Toast.makeText(
+                    requireContext(),
+                    "Cargando",
+                    Toast.LENGTH_SHORT
+                ).show()
+                is PokemonsViewModel.PokemonsState.ERROR -> Toast.makeText(
+                    requireContext(),
+                    state.cause,
+                    Toast.LENGTH_SHORT
+                ).show()
+                is PokemonsViewModel.PokemonsState.SUCCESS -> pokemonsAdapter?.updateData(state.pokemons.map { it.name })
+            }
+        })
     }
 
     override fun onDestroyView() {

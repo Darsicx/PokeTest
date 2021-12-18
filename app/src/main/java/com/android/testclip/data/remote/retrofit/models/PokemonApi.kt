@@ -8,6 +8,7 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface PokemonApi {
 
@@ -17,18 +18,18 @@ interface PokemonApi {
     ): Observable<KantoPokemonsResponse>
 
     @GET("pokemon-species/{name}/")
-    fun getPokemonInfo(
+    suspend fun getPokemonInfo(
         @Path("name") name: String,
-    ): Observable<PokemonInfoResponseDto>
+    ): PokemonInfoResponseDto
 
     @GET("pokemon/{name}/")
     fun getPokemonAbillities(
         @Path("name") name: String,
     ): Observable<PokemonAbilitiesResponse>
 
-    @GET("evolution-chain/{evolution_id}/")
+    @GET
     fun getEvolutionChain(
-        @Path("evolution_id") evolutionChain: Int,
+        @Url url: String,
     ): Observable<PokemonEvolutiveChainResponse>
 
 

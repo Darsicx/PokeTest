@@ -38,13 +38,23 @@
         android:id="@+id/pokemonAbilityFragment"
         android:name="com.android.testclip.ui.pokemon_ability.PokemonAbilityFragment"
         android:label="PokemonAbilityFragment"
-        tools:layout="@layout/fragment_pokemon_abilities"/>
+        tools:layout="@layout/fragment_pokemon_abilities">
+        <argument
+            android:name="pokemon_name"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/pokemonEvolutionFragment"
         android:name="com.android.testclip.ui.pokemon_evolution.PokemonEvolutionFragment"
         android:label="PokemonEvolutionFragment"
         tools:layout="@layout/fragment_pokemon_evolution">
+        <argument
+            android:name="evolutive_chain_url"
+            android:defaultValue=""
+            app:argType="string" />
+
         <action
             android:id="@+id/action_pokemonEvolutionFragment_to_pokemonsFragment"
             app:destination="@id/pokemonsFragment"

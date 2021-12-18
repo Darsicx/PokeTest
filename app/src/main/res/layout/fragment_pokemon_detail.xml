@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tv_pokemon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Charmander" />
+
+    <TextView
+        android:id="@+id/tv_happiness_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Felicidad base: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_pokemon_name" />
+
+    <TextView
+        android:id="@+id/tv_happiness"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14sp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_happiness_label"
+        app:layout_constraintTop_toTopOf="@id/tv_happiness_label"
+        app:layout_constraintBottom_toBottomOf="@id/tv_happiness_label"
+        tools:text="70"/>
+
+    <TextView
+        android:id="@+id/tv_ratio_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Ratio Captura: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_happiness_label" />
+
+    <TextView
+        android:id="@+id/tv_ratio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14sp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_ratio_label"
+        app:layout_constraintTop_toTopOf="@id/tv_ratio_label"
+        app:layout_constraintBottom_toBottomOf="@id/tv_ratio_label"
+        tools:text="45"/>
+
+    <TextView
+        android:id="@+id/tv_egg_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Grupos huevo: "
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_ratio_label" />
+
+    <TextView
+        android:id="@+id/tv_egg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14sp"
+        android:layout_marginEnd="8dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_egg_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/tv_egg_label"
+        app:layout_constraintTop_toTopOf="@id/tv_egg_label"
+        tools:text="mountro, grogo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_evolutive_chain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Linea evolutiva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_egg_label" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_abilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Habilidades"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_evolutive_chain" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

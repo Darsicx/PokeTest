@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/activity_main.xml" value="0.2234375" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/fragment_pokemon_abilities.xml" value="0.2234375" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/fragment_pokemon_detail.xml" value="0.2234375" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/fragment_pokemon_evolution.xml" value="0.2234375" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/fragment_pokemons.xml" value="0.264" />
+        <entry key="..\:/Users/carlo/AndroidStudioProjects/TestClip/app/src/main/res/layout/item_pokemons.xml" value="0.2033195020746888" />
       </map>
     </option>
   </component>

@@ -23,14 +23,14 @@ interface PokemonApi {
     ): PokemonInfoResponseDto
 
     @GET("pokemon/{name}/")
-    fun getPokemonAbillities(
+    suspend fun getPokemonAbillities(
         @Path("name") name: String,
-    ): Observable<PokemonAbilitiesResponse>
+    ): PokemonAbilitiesResponse
 
     @GET
-    fun getEvolutionChain(
+    suspend fun getEvolutionChain(
         @Url url: String,
-    ): Observable<PokemonEvolutiveChainResponse>
+    ): PokemonEvolutiveChainResponse
 
 
 }

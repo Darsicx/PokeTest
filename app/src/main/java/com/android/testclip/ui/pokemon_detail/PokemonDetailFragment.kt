@@ -37,7 +37,7 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
         savedInstanceState: Bundle?
     ): View? {
         viewModelFactory =
-            ServiceLocator.providePokemonDetailViewModelFactory(this.requireContext())
+            ServiceLocator.providePokemonDetailViewModelFactory()
         viewModel.getPokemonsDetail(args.pokemonName)
         return super.onCreateView(inflater, container, savedInstanceState)
     }

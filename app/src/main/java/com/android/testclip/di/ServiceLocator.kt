@@ -4,10 +4,8 @@ import android.content.Context
 import com.android.testclip.data.local.room.PokemonDatabase
 import com.android.testclip.data.local.room.daos.PokemonDao
 import com.android.testclip.data.remote.retrofit.models.WebService
-import com.android.testclip.data.repository.IPokemonDetailRepository
-import com.android.testclip.data.repository.IPokemonsRepository
-import com.android.testclip.data.repository.PokemonDetailRepository
-import com.android.testclip.data.repository.PokemonsRepository
+import com.android.testclip.data.repository.*
+import com.android.testclip.ui.pokemon_ability.PokemonAbilityViewModelFactory
 import com.android.testclip.ui.pokemon_detail.PokemonDetailViewModelFactory
 import com.android.testclip.ui.pokemons.PokemonsViewModelFactory
 
@@ -25,14 +23,25 @@ object ServiceLocator {
         )
     }
 
-    fun providePokemonsDetailRepository(context: Context): IPokemonDetailRepository {
+    fun providePokemonsDetailRepository(): IPokemonDetailRepository {
         return PokemonDetailRepository(
             WebService.service
         )
     }
 
-    fun providePokemonDetailViewModelFactory(context: Context): PokemonDetailViewModelFactory {
-        val repository = providePokemonsDetailRepository(context)
+    fun providePokemonsAbilityRepository(): IPokemonAbilitiesRepository {
+        return PokemonAbilitiesRepository(
+            WebService.service
+        )
+    }
+
+    fun providePokemonAbilityViewModelFactory(): PokemonAbilityViewModelFactory {
+        val repository = providePokemonsAbilityRepository()
+        return PokemonAbilityViewModelFactory(repository)
+    }
+
+    fun providePokemonDetailViewModelFactory(): PokemonDetailViewModelFactory {
+        val repository = providePokemonsDetailRepository()
         return PokemonDetailViewModelFactory(repository)
     }
 

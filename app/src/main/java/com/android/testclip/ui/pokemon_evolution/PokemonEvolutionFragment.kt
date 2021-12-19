@@ -3,6 +3,7 @@ package com.android.testclip.ui.pokemon_evolution
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -60,16 +61,14 @@ class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
                     when (state) {
                         PokemonEvolutionViewModel.PokemonEvolutionState.DEFAULT -> Unit
                         PokemonEvolutionViewModel.PokemonEvolutionState.LOADING -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Cargando",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            binding.pgPokemonEvolution.isVisible = true
                         }
                         is PokemonEvolutionViewModel.PokemonEvolutionState.SUCCESS -> {
+                            binding.pgPokemonEvolution.isVisible = false
                             pokemonEvolutionAdapter?.updateData(state.pokemons)
                         }
                         is PokemonEvolutionViewModel.PokemonEvolutionState.ERROR -> {
+                            binding.pgPokemonEvolution.isVisible = false
                             Toast.makeText(
                                 requireContext(),
                                 state.exception?.message,
@@ -87,13 +86,10 @@ class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
                     when (state) {
                         PokemonEvolutionViewModel.PokemonFavoriteState.DEFAULT -> Unit
                         PokemonEvolutionViewModel.PokemonFavoriteState.LOADING -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Cargando",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            binding.pgPokemonEvolution.isVisible = true
                         }
                         is PokemonEvolutionViewModel.PokemonFavoriteState.SUCCESS -> {
+                            binding.pgPokemonEvolution.isVisible = false
                             if (state.pokemon.pokemonName.isBlank()) {
                                 Toast.makeText(
                                     requireContext(),
@@ -110,6 +106,7 @@ class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
 
                         }
                         is PokemonEvolutionViewModel.PokemonFavoriteState.ERROR -> {
+                            binding.pgPokemonEvolution.isVisible = false
                             Toast.makeText(
                                 requireContext(),
                                 state.cause,

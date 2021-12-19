@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -68,17 +69,19 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
     private fun setupObservers() {
         viewModel.pokemonsState.observe(this, { state ->
             when (state) {
-                PokemonsViewModel.PokemonsState.LOADING -> Toast.makeText(
-                    requireContext(),
-                    "Cargando",
-                    Toast.LENGTH_SHORT
-                ).show()
-                is PokemonsViewModel.PokemonsState.ERROR -> Toast.makeText(
-                    requireContext(),
-                    state.cause,
-                    Toast.LENGTH_SHORT
-                ).show()
-                is PokemonsViewModel.PokemonsState.SUCCESS -> pokemonsAdapter?.updateData(state.pokemons)
+                PokemonsViewModel.PokemonsState.LOADING -> binding.pgPokemon.isVisible= true
+                is PokemonsViewModel.PokemonsState.ERROR -> {
+                    binding.pgPokemon.isVisible = false
+                    Toast.makeText(
+                        requireContext(),
+                        state.cause,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is PokemonsViewModel.PokemonsState.SUCCESS -> {
+                    binding.pgPokemon.isVisible = false
+                    pokemonsAdapter?.updateData(state.pokemons)
+                }
             }
         })
     }

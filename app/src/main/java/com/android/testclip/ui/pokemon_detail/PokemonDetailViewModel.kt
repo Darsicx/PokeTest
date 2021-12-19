@@ -18,7 +18,8 @@ class PokemonDetailViewModel(private val repository: IPokemonDetailRepository) :
     fun getPokemonsDetail(name: String) {
         viewModelScope.launch {
             try {
-                if (response != null) {
+                _pokemonDetailState.value = PokemonDetailState.LOADING
+                    if (response != null) {
                     _pokemonDetailState.value = PokemonDetailState.SUCCESS(response!!)
                 } else {
                     response = repository.getPokemonDetail(name)

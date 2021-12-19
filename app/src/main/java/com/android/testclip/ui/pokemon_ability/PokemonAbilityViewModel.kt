@@ -18,7 +18,8 @@ class PokemonAbilityViewModel(private val repository: IPokemonAbilitiesRepositor
     fun getPokemonAbilities(name: String) {
         viewModelScope.launch {
             try {
-                if (abilities != null) {
+                _pokemonAbilityState.value = PokemonAbilityState.LOADING
+                    if (abilities != null) {
                     _pokemonAbilityState.value = PokemonAbilityState.SUCCESS(abilities!!)
                 } else {
                     val response = repository.getPokemonAbilities(name)

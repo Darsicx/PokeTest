@@ -57,13 +57,10 @@ class PokemonAbilityFragment : Fragment(R.layout.fragment_pokemon_abilities) {
                     when (state) {
                         PokemonAbilityViewModel.PokemonAbilityState.DEFAULT -> Unit
                         PokemonAbilityViewModel.PokemonAbilityState.LOADING -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Cargando",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            binding.pgPokemonAbility.isVisible = true
                         }
                         is PokemonAbilityViewModel.PokemonAbilityState.SUCCESS -> {
+                            binding.pgPokemonAbility.isVisible = false
                             binding.apply {
                                 tvPokemonName.text = args.pokemonName
                                 tvPokemonName.isVisible = true
@@ -72,6 +69,7 @@ class PokemonAbilityFragment : Fragment(R.layout.fragment_pokemon_abilities) {
                             pokemonAbilitiesAdapter?.updateData(state.pokemonAbility)
                         }
                         is PokemonAbilityViewModel.PokemonAbilityState.ERROR -> {
+                            binding.pgPokemonAbility.isVisible = false
                             Toast.makeText(
                                 requireContext(),
                                 state.cause,

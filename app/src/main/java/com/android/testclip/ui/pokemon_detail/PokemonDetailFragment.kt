@@ -76,13 +76,10 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
                     when (state) {
                         PokemonDetailViewModel.PokemonDetailState.DEFAULT -> Unit
                         PokemonDetailViewModel.PokemonDetailState.LOADING -> {
-                            Toast.makeText(
-                                requireContext(),
-                                "Cargando",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            binding.pgPokemonDetail.isVisible = true
                         }
                         is PokemonDetailViewModel.PokemonDetailState.SUCCESS -> {
+                            binding.pgPokemonDetail.isVisible = false
                             binding.gpPokemonDetailContainer.isVisible = true
 
                             binding.apply {
@@ -95,6 +92,7 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
                             evolutiveChainUrl = state.pokemons.evolutionChainDto.url
                         }
                         is PokemonDetailViewModel.PokemonDetailState.ERROR -> {
+                            binding.pgPokemonDetail.isVisible = false
                             Toast.makeText(
                                 requireContext(),
                                 state.cause,

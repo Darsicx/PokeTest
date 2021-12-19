@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_pokemonDetailFragment_to_pokemonEvolutionFragment"
             app:destination="@id/pokemonEvolutionFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="testclip.com/poke-info/{pokemon_name}" />
     </fragment>
 
     <fragment

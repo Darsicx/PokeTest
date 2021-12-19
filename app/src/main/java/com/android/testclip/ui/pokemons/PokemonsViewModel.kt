@@ -3,7 +3,7 @@ package com.android.testclip.ui.pokemons
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.testclip.data.local.room.entities.PokemonEntity
+import com.android.testclip.data.constants.PokemonStatus
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.mapToPokemonEntity
 import com.android.testclip.data.repository.IPokemonsRepository
@@ -74,7 +74,14 @@ class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
                 onNext = {
-                    _pokemonsState.value = PokemonsState.SUCCESS(it)
+                    _pokemonsState.value = PokemonsState.SUCCESS(it.map {
+                        return@map when (it.status) {
+                            PokemonStatus.DEFAULT.status -> it.name
+                            PokemonStatus.FAVORITE.status  -> "Favorito - ${it.name}"
+                            PokemonStatus.ERROR.status  -> "Error - ${it.name}"
+                            else -> it.name
+                        }
+                    })
                 },
                 onError = {
                     _pokemonsState.value = PokemonsState.ERROR("Can´t observe pokemons table", it)
@@ -82,12 +89,12 @@ class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel
             .addTo(compositeDisposable)
     }
 
-    fun deletePrefix(pokemonName: String, id: Int) {
+    fun deletePrefix(id: Int) {
         Observable.timer(5, TimeUnit.SECONDS)
             .flatMap {
                 Observable.fromCallable {
-                    repository.updatePokemonNameById(
-                        pokemonName,
+                    repository.updatePokemonStatusById(
+                        PokemonStatus.DEFAULT.status,
                         id
                     )
                 }
@@ -107,7 +114,7 @@ class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel
 
     sealed class PokemonsState() {
         object LOADING : PokemonsState()
-        data class SUCCESS(val pokemons: List<PokemonEntity>) : PokemonsState()
+        data class SUCCESS(val pokemons: List<String>) : PokemonsState()
         data class ERROR(val cause: String, val exception: Throwable?) : PokemonsState()
     }
 

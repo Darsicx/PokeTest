@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonsBinding
 import com.android.testclip.di.ServiceLocator
-import com.android.testclip.ui.pokemon_evolution.PokemonEvolutionFragmentArgs
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
 
 class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
@@ -48,8 +47,8 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
     }
 
     private fun deletePrefix() {
-        if(args.pokemonResponse != null) {
-            viewModel.deletePrefix(args.pokemonResponse?.pokemonName!!,args.pokemonResponse?.pokemonId!!)
+        if (args.pokemonResponse != null) {
+            viewModel.deletePrefix(args.pokemonResponse?.pokemonId!!)
         }
     }
 
@@ -79,7 +78,7 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
                     state.cause,
                     Toast.LENGTH_SHORT
                 ).show()
-                is PokemonsViewModel.PokemonsState.SUCCESS -> pokemonsAdapter?.updateData(state.pokemons.map { it.name })
+                is PokemonsViewModel.PokemonsState.SUCCESS -> pokemonsAdapter?.updateData(state.pokemons)
             }
         })
     }

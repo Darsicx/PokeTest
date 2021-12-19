@@ -12,10 +12,10 @@ import com.android.testclip.data.local.room.entities.PokemonEntity
  */
 @Database(
     entities = [PokemonEntity::class],
-    version = 1,
-    exportSchema = true
+    version = 2,
+    exportSchema = true,
 )
-abstract class PokemonDatabase: RoomDatabase() {
+abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
 
     companion object {
@@ -32,6 +32,7 @@ abstract class PokemonDatabase: RoomDatabase() {
                 context.applicationContext,
                 PokemonDatabase::class.java, "Pokemon.db"
             )
+                .addMigrations(RoomMigrations.MIGRATION_1_2)
                 .build()
     }
 }

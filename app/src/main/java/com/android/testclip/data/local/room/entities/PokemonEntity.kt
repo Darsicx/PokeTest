@@ -12,4 +12,5 @@ data class PokemonEntity(
         typeAffinity = ColumnInfo.INTEGER
     ) val pokemonId: Int,
     @ColumnInfo(name = "name", typeAffinity = ColumnInfo.TEXT) val name: String,
+    @ColumnInfo(name = "status", typeAffinity = ColumnInfo.INTEGER) val status: Int,
 )

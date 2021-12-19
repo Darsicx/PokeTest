@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonEvolutionBinding
 import com.android.testclip.di.ServiceLocator
-import com.android.testclip.ui.pokemons.PokemonsFragmentDirections
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -95,9 +94,20 @@ class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
                             ).show()
                         }
                         is PokemonEvolutionViewModel.PokemonFavoriteState.SUCCESS -> {
-                            val direction =
-                                PokemonEvolutionFragmentDirections.actionPokemonEvolutionFragmentToPokemonsFragment(state.pokemon)
-                            findNavController().navigate(direction)
+                            if (state.pokemon.pokemonName.isBlank()) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Pokemon no disponible",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                val direction =
+                                    PokemonEvolutionFragmentDirections.actionPokemonEvolutionFragmentToPokemonsFragment(
+                                        state.pokemon
+                                    )
+                                findNavController().navigate(direction)
+                            }
+
                         }
                         is PokemonEvolutionViewModel.PokemonFavoriteState.ERROR -> {
                             Toast.makeText(

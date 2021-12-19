@@ -34,6 +34,10 @@ class PokemonsRepository(
         return pokemonsDatasource.updatePokemonNameById(pokemonName,id)
     }
 
+    override fun updatePokemonStatusById(status: Int, id: Int) {
+        return pokemonsDatasource.updatePokemonStatusById(status,id)
+    }
+
     override fun deleteAllPokemons() {
         return pokemonsDatasource.deleteAllPokemons()
     }

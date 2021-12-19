@@ -25,7 +25,7 @@ ext {
     converter_gson = "2.5.0"
     glide = "4.11.0"
 
-    room_version = "2.3.0"
+    room_version = "2.4.0"
     lifecycle_version = "2.2.0"
     lifecycle_ktx = "2.4.0"
 

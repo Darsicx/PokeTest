@@ -46,6 +46,12 @@ interface PokemonDao {
     fun updatePokemonNameById(temporalName: String, id: Int)
 
     /**
+     * Updates pokemon status  by id.
+     */
+    @Query("UPDATE Pokemon SET status = :pokeStatus WHERE id_pokemon = :id")
+    fun updatePokemonStatusById(pokeStatus: Int, id: Int)
+
+    /**
      * Delete all pokemons.
      */
     @Query("DELETE FROM Pokemon")

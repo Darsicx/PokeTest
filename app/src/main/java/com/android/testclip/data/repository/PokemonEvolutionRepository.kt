@@ -18,9 +18,15 @@ class PokemonEvolutionRepository(
     override suspend fun saveAsFavorite(pokemonName: String): PokemonFavoriteResponse {
         delay(5000)
         val pokemon = pokemonsDatasource.getPokemonByName(pokemonName)
-        val random = (0..1).random()
-        val text = if (random == 1) "Favorito - " else "Error - "
-        pokemonsDatasource.updatePokemonNameById("$text $pokemonName",pokemon.pokemonId)
-        return PokemonFavoriteResponse(pokemon.pokemonId,pokemonName, random == 1)
+        val random = (1..2).random()
+        //val text = if (random == 1) "Favorito - " else "Error - "
+        //pokemonsDatasource.updatePokemonNameById("$text $pokemonName",pokemon.pokemonId)
+        return if(pokemon != null) {
+            pokemonsDatasource.updatePokemonStatusById(random,pokemon.pokemonId)
+             PokemonFavoriteResponse(pokemon.pokemonId,pokemonName, random == 1)
+        } else {
+            PokemonFavoriteResponse(0,"", false)
+        }
+
     }
 }

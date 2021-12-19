@@ -19,6 +19,8 @@ interface IPokemonsRepository {
 
     fun updatePokemonNameById(pokemonName: String, id: Int)
 
+    fun updatePokemonStatusById(status: Int, id: Int)
+
     fun deleteAllPokemons()
 
 }

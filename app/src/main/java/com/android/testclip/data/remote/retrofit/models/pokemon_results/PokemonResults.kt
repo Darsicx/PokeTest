@@ -12,4 +12,4 @@ data class PokemonResults(
 )
 
 fun PokemonResults.mapToPokemonEntity() =
-    PokemonEntity(0,this.name)
+    PokemonEntity(0,this.name,0)

@@ -7,11 +7,13 @@ import com.android.testclip.data.local.room.entities.PokemonEntity
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.mapToPokemonEntity
 import com.android.testclip.data.repository.IPokemonsRepository
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
@@ -25,7 +27,7 @@ class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
-                onSuccess = {pokemonsList ->
+                onSuccess = { pokemonsList ->
                     if (pokemonsList.isNotEmpty()) {
                         observePokemons()
                     } else {
@@ -79,6 +81,29 @@ class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel
                 })
             .addTo(compositeDisposable)
     }
+
+    fun deletePrefix(pokemonName: String, id: Int) {
+        Observable.timer(5, TimeUnit.SECONDS)
+            .flatMap {
+                Observable.fromCallable {
+                    repository.updatePokemonNameById(
+                        pokemonName,
+                        id
+                    )
+                }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onComplete = {
+
+
+                },
+                onError = {
+
+                })
+            .addTo(compositeDisposable)
+    }
+
 
     sealed class PokemonsState() {
         object LOADING : PokemonsState()

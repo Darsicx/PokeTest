@@ -33,6 +33,19 @@ interface PokemonDao {
     fun getAllPokemonsAtOnce(): Single<List<PokemonEntity>>
 
     /**
+     * Get a pokemon by the name
+     * @return a pokemon
+     */
+    @Query("SELECT * FROM Pokemon WHERE name = :pokemonName")
+    suspend fun getPokemonByName(pokemonName: String): PokemonEntity
+
+    /**
+     * Updates pokemon name by id.
+     */
+    @Query("UPDATE Pokemon SET name = :temporalName WHERE id_pokemon = :id")
+    fun updatePokemonNameById(temporalName: String, id: Int)
+
+    /**
      * Delete all pokemons.
      */
     @Query("DELETE FROM Pokemon")

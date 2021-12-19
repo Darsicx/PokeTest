@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class PokemonEvolutiveChainResponse(
     @SerializedName("chain")
-    val chainDto: ChainDto,
+    val chainDto: EvolvesToDto,
     @SerializedName("id")
     val id: Int
 )

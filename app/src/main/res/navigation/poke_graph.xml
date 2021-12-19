@@ -12,6 +12,12 @@
         android:label="PokemonsFragment"
         tools:layout="@layout/fragment_pokemons">
 
+        <argument
+            android:name="pokemon_response"
+            app:argType="com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
         <action
             android:id="@+id/action_pokemonsFragment_to_pokemonDetailFragment"
             app:destination="@id/pokemonDetailFragment" />
@@ -52,6 +58,11 @@
         tools:layout="@layout/fragment_pokemon_evolution">
         <argument
             android:name="evolutive_chain_url"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="pokemon_name"
             android:defaultValue=""
             app:argType="string" />
 

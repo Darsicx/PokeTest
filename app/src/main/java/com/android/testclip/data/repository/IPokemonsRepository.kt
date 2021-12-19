@@ -17,6 +17,8 @@ interface IPokemonsRepository {
 
     fun getRemotePokemons(): Observable<KantoPokemonsResponse>
 
+    fun updatePokemonNameById(pokemonName: String, id: Int)
+
     fun deleteAllPokemons()
 
 }

@@ -8,10 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonsBinding
 import com.android.testclip.di.ServiceLocator
+import com.android.testclip.ui.pokemon_evolution.PokemonEvolutionFragmentArgs
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
 
 class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
@@ -23,6 +25,8 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
     private var pokemonsAdapter: PokemonsAdapter? = null
 
     private val viewModel: PokemonsViewModel by viewModels { viewModelFactory }
+
+    private val args: PokemonsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +44,13 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
 
         setupPokemonsAdapter()
         setupObservers()
+        deletePrefix()
+    }
+
+    private fun deletePrefix() {
+        if(args.pokemonResponse != null) {
+            viewModel.deletePrefix(args.pokemonResponse?.pokemonName!!,args.pokemonResponse?.pokemonId!!)
+        }
     }
 
     private fun setupPokemonsAdapter() {

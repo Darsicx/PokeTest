@@ -7,6 +7,7 @@ import com.android.testclip.data.remote.retrofit.models.WebService
 import com.android.testclip.data.repository.*
 import com.android.testclip.ui.pokemon_ability.PokemonAbilityViewModelFactory
 import com.android.testclip.ui.pokemon_detail.PokemonDetailViewModelFactory
+import com.android.testclip.ui.pokemon_evolution.PokemonEvolutionViewModelFactory
 import com.android.testclip.ui.pokemons.PokemonsViewModelFactory
 
 object ServiceLocator {
@@ -33,6 +34,18 @@ object ServiceLocator {
         return PokemonAbilitiesRepository(
             WebService.service
         )
+    }
+
+    fun providePokemonEvolutionRepository(context: Context): IPokemonEvolutionRepository {
+        return PokemonEvolutionRepository(
+            WebService.service,
+            providePokemonDataSource(context)
+        )
+    }
+
+    fun providePokemonEvolutionViewModelFactory(context: Context): PokemonEvolutionViewModelFactory {
+        val repository = providePokemonEvolutionRepository(context)
+        return PokemonEvolutionViewModelFactory(repository)
     }
 
     fun providePokemonAbilityViewModelFactory(): PokemonAbilityViewModelFactory {

@@ -16,16 +16,18 @@ import androidx.navigation.fragment.navArgs
 import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonDetailBinding
 import com.android.testclip.di.ServiceLocator
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
 
     private var _binding: FragmentPokemonDetailBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: PokemonDetailViewModelFactory
-    private val viewModel: PokemonDetailViewModel by viewModels { viewModelFactory }
+   // private lateinit var viewModelFactory: PokemonDetailViewModelFactory
+    private val viewModel: PokemonDetailViewModel by viewModels()
 
     private val args: PokemonDetailFragmentArgs by navArgs()
 
@@ -36,8 +38,8 @@ class PokemonDetailFragment : Fragment(R.layout.fragment_pokemon_detail) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModelFactory =
-            ServiceLocator.providePokemonDetailViewModelFactory()
+       /* viewModelFactory =
+            ServiceLocator.providePokemonDetailViewModelFactory()*/
         viewModel.getPokemonsDetail(args.pokemonName)
         return super.onCreateView(inflater, container, savedInstanceState)
     }

@@ -3,11 +3,14 @@ package com.android.testclip.ui.pokemon_ability
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.testclip.data.repository.IPokemonAbilitiesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PokemonAbilityViewModel(private val repository: IPokemonAbilitiesRepository) : ViewModel() {
+@HiltViewModel
+class PokemonAbilityViewModel @Inject constructor(private val repository: IPokemonAbilitiesRepository) : ViewModel() {
 
     private val _pokemonAbilityState: MutableStateFlow<PokemonAbilityState> =
         MutableStateFlow(PokemonAbilityState.DEFAULT)

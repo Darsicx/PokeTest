@@ -15,16 +15,18 @@ import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonAbilitiesBinding
 import com.android.testclip.di.ServiceLocator
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PokemonAbilityFragment : Fragment(R.layout.fragment_pokemon_abilities) {
 
     private var _binding: FragmentPokemonAbilitiesBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModelFactory: PokemonAbilityViewModelFactory
-    private val viewModel: PokemonAbilityViewModel by viewModels { viewModelFactory }
+    private val viewModel: PokemonAbilityViewModel by viewModels()
 
     private val args: PokemonAbilityFragmentArgs by navArgs()
 
@@ -34,8 +36,8 @@ class PokemonAbilityFragment : Fragment(R.layout.fragment_pokemon_abilities) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPokemonAbilitiesBinding.bind(view)
 
-        viewModelFactory =
-            ServiceLocator.providePokemonAbilityViewModelFactory()
+        /*viewModelFactory =
+            ServiceLocator.providePokemonAbilityViewModelFactory()*/
 
         setupObservers()
         setupPokemonAbilitiesAdapter()

@@ -12,7 +12,7 @@ import com.android.testclip.ui.pokemons.PokemonsViewModelFactory
 
 object ServiceLocator {
 
-    fun providePokemonDataSource(context: Context): PokemonDao {
+    /*fun providePokemonDataSource(context: Context): PokemonDao {
         val database = PokemonDatabase.getInstance(context.applicationContext)
         return database.pokemonDao()
     }
@@ -61,5 +61,5 @@ object ServiceLocator {
     fun providePokemonsViewModelFactory(context: Context): PokemonsViewModelFactory {
         val repository = providePokemonsRepository(context)
         return PokemonsViewModelFactory(repository)
-    }
+    }*/
 }

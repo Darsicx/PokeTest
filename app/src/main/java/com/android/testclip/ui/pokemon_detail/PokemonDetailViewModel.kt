@@ -4,11 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.testclip.data.remote.retrofit.models.pokemon_info.PokemonInfoResponseDto
 import com.android.testclip.data.repository.IPokemonDetailRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PokemonDetailViewModel(private val repository: IPokemonDetailRepository) : ViewModel() {
+@HiltViewModel
+class PokemonDetailViewModel @Inject constructor(private val repository: IPokemonDetailRepository) : ViewModel() {
 
     private val _pokemonDetailState: MutableStateFlow<PokemonDetailState> =
         MutableStateFlow(PokemonDetailState.DEFAULT)

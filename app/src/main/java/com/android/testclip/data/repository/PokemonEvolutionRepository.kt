@@ -5,8 +5,9 @@ import com.android.testclip.data.remote.retrofit.models.PokemonApi
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonEvolutiveChainResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class PokemonEvolutionRepository(
+class PokemonEvolutionRepository @Inject constructor(
     private val service: PokemonApi,
     private val pokemonsDatasource: PokemonDao
 ) : IPokemonEvolutionRepository {

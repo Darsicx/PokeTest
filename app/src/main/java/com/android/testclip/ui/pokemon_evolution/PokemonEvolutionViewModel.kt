@@ -5,13 +5,16 @@ import androidx.lifecycle.viewModelScope
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.EvolvesToDto
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse
 import com.android.testclip.data.repository.IPokemonEvolutionRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class PokemonEvolutionViewModel(private val repository: IPokemonEvolutionRepository) : ViewModel() {
+@HiltViewModel
+class PokemonEvolutionViewModel @Inject constructor (private val repository: IPokemonEvolutionRepository) : ViewModel() {
 
     private val _pokemonEvolutionState: MutableStateFlow<PokemonEvolutionState> =
         MutableStateFlow(PokemonEvolutionState.DEFAULT)

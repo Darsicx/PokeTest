@@ -7,6 +7,7 @@ import com.android.testclip.data.constants.PokemonStatus
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.mapToPokemonEntity
 import com.android.testclip.data.repository.IPokemonsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,8 +15,10 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class PokemonsViewModel(private val repository: IPokemonsRepository) : ViewModel() {
+@HiltViewModel
+class PokemonsViewModel @Inject constructor(private val repository: IPokemonsRepository) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     private val _pokemonsState: MutableLiveData<PokemonsState> = MutableLiveData()

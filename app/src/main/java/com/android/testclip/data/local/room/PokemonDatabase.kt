@@ -1,8 +1,6 @@
 package com.android.testclip.data.local.room
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.android.testclip.data.local.room.daos.PokemonDao
 import com.android.testclip.data.local.room.entities.PokemonEntity
@@ -18,7 +16,7 @@ import com.android.testclip.data.local.room.entities.PokemonEntity
 abstract class PokemonDatabase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDao
 
-    companion object {
+    /*companion object {
         @Volatile
         private var INSTANCE: PokemonDatabase? = null
 
@@ -34,5 +32,5 @@ abstract class PokemonDatabase : RoomDatabase() {
             )
                 .addMigrations(RoomMigrations.MIGRATION_1_2)
                 .build()
-    }
+    }*/
 }

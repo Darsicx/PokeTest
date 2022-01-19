@@ -16,18 +16,20 @@ import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonEvolutionBinding
 import com.android.testclip.di.ServiceLocator
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
 
     private var _binding: FragmentPokemonEvolutionBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: PokemonEvolutionViewModelFactory
+   // private lateinit var viewModelFactory: PokemonEvolutionViewModelFactory
     private var pokemonEvolutionAdapter: PokemonsAdapter? = null
 
-    private val viewModel: PokemonEvolutionViewModel by viewModels { viewModelFactory }
+    private val viewModel: PokemonEvolutionViewModel by viewModels ()
 
     private val args: PokemonEvolutionFragmentArgs by navArgs()
 
@@ -35,8 +37,8 @@ class PokemonEvolutionFragment : Fragment(R.layout.fragment_pokemon_evolution) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPokemonEvolutionBinding.bind(view)
 
-        viewModelFactory =
-            ServiceLocator.providePokemonEvolutionViewModelFactory(this.requireContext())
+        /*viewModelFactory =
+            ServiceLocator.providePokemonEvolutionViewModelFactory(this.requireContext())*/
 
         viewModel.getPokemonEvolutiveChain(args.evolutiveChainUrl)
         setupPokemonEvolutionAdapter()

@@ -15,16 +15,18 @@ import com.android.testclip.R
 import com.android.testclip.databinding.FragmentPokemonsBinding
 import com.android.testclip.di.ServiceLocator
 import com.android.testclip.ui.pokemons.adapter.PokemonsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
 
     private var _binding: FragmentPokemonsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: PokemonsViewModelFactory
+    //private lateinit var viewModelFactory: PokemonsViewModelFactory
     private var pokemonsAdapter: PokemonsAdapter? = null
 
-    private val viewModel: PokemonsViewModel by viewModels { viewModelFactory }
+    private val viewModel: PokemonsViewModel by viewModels ()
 
     private val args: PokemonsFragmentArgs by navArgs()
 
@@ -33,7 +35,7 @@ class PokemonsFragment : Fragment(R.layout.fragment_pokemons) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModelFactory = ServiceLocator.providePokemonsViewModelFactory(this.requireContext())
+//        viewModelFactory = ServiceLocator.providePokemonsViewModelFactory(this.requireContext())
         viewModel.getPokemonsData()
         return super.onCreateView(inflater, container, savedInstanceState)
     }

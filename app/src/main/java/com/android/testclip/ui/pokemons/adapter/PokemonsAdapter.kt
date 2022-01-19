@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.testclip.databinding.ItemPokemonsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class PokemonsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

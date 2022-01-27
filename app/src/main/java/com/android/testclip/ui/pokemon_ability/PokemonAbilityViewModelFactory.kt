@@ -2,7 +2,7 @@ package com.android.testclip.ui.pokemon_ability
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.testclip.data.repository.IPokemonAbilitiesRepository
+import com.android.testclip.domain.repository.IPokemonAbilitiesRepository
 
 class PokemonAbilityViewModelFactory(private val repository: IPokemonAbilitiesRepository) :
     ViewModelProvider.Factory {

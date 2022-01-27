@@ -3,10 +3,10 @@ package com.android.testclip.ui.pokemons
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.android.testclip.data.constants.PokemonStatus
+import com.android.testclip.data.local.constants.PokemonStatus
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.mapToPokemonEntity
-import com.android.testclip.data.repository.IPokemonsRepository
+import com.android.testclip.domain.repository.IPokemonsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

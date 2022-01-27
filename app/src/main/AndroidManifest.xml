@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestClip">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <nav-graph android:value="@navigation/poke_graph" />
             <intent-filter>

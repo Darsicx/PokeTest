@@ -2,7 +2,7 @@ package com.android.testclip.ui.pokemon_ability
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.testclip.data.repository.IPokemonAbilitiesRepository
+import com.android.testclip.domain.repository.IPokemonAbilitiesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

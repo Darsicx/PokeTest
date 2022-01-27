@@ -1,4 +1,4 @@
-package com.android.testclip.data.repository
+package com.android.testclip.domain.repository
 
 import com.android.testclip.data.local.room.entities.PokemonEntity
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse

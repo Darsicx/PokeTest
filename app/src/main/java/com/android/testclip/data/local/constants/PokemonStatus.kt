@@ -1,4 +1,4 @@
-package com.android.testclip.data.constants
+package com.android.testclip.data.local.constants
 
 enum class PokemonStatus(val status: Int) {
     DEFAULT(0),

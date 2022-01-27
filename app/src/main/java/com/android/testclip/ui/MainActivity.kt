@@ -1,4 +1,4 @@
-package com.android.testclip
+package com.android.testclip.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -7,7 +7,14 @@ import com.android.testclip.data.local.room.PokemonDatabase
 import com.android.testclip.data.local.room.RoomMigrations
 import com.android.testclip.data.local.room.daos.PokemonDao
 import com.android.testclip.data.remote.retrofit.models.PokemonApi
-import com.android.testclip.data.repository.*
+import com.android.testclip.data.remote.repository.*
+import com.android.testclip.domain.repository.IPokemonAbilitiesRepository
+import com.android.testclip.domain.repository.IPokemonDetailRepository
+import com.android.testclip.domain.repository.IPokemonEvolutionRepository
+import com.android.testclip.domain.repository.IPokemonsRepository
+import com.android.testclip.domain.use_case.GetEvolutionChain
+import com.android.testclip.domain.use_case.PokemonEvolutionUseCases
+import com.android.testclip.domain.use_case.SaveAsFavorite
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -92,4 +99,13 @@ object AppModule {
     @Singleton
     @Provides
     fun providePokemonAbilityRepository(api: PokemonApi): IPokemonAbilitiesRepository = PokemonAbilitiesRepository(api)
+
+    @Singleton
+    @Provides
+    fun providePokemonEvolutionUseCases(repository: PokemonEvolutionRepository): PokemonEvolutionUseCases {
+        return PokemonEvolutionUseCases(
+            getEvolutionChain = GetEvolutionChain(repository),
+            saveAsFavorite = SaveAsFavorite(repository)
+        )
+    }
 }

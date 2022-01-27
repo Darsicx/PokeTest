@@ -1,4 +1,4 @@
-package com.android.testclip.data.repository
+package com.android.testclip.domain.repository
 
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonEvolutiveChainResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse

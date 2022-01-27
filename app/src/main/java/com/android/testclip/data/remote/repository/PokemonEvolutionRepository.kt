@@ -1,9 +1,10 @@
-package com.android.testclip.data.repository
+package com.android.testclip.data.remote.repository
 
 import com.android.testclip.data.local.room.daos.PokemonDao
 import com.android.testclip.data.remote.retrofit.models.PokemonApi
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonEvolutiveChainResponse
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse
+import com.android.testclip.domain.repository.IPokemonEvolutionRepository
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 

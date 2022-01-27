@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.EvolvesToDto
 import com.android.testclip.data.remote.retrofit.models.pokemon_evolutive_chain.PokemonFavoriteResponse
-import com.android.testclip.data.repository.IPokemonEvolutionRepository
+import com.android.testclip.domain.use_case.PokemonEvolutionUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class PokemonEvolutionViewModel @Inject constructor (private val repository: IPokemonEvolutionRepository) : ViewModel() {
+class PokemonEvolutionViewModel @Inject constructor (private val pokeEvolutionUseCases: PokemonEvolutionUseCases) : ViewModel() {
 
     private val _pokemonEvolutionState: MutableStateFlow<PokemonEvolutionState> =
         MutableStateFlow(PokemonEvolutionState.DEFAULT)
@@ -34,7 +34,7 @@ class PokemonEvolutionViewModel @Inject constructor (private val repository: IPo
                     _pokemonEvolutionState.value =
                         PokemonEvolutionState.SUCCESS(pokemonEvolutions)
                 } else {
-                    val response = repository.getEvolutionChain(url)
+                    val response = pokeEvolutionUseCases.getEvolutionChain(url)
                     getPokemonEvolution(response.chainDto)
                     _pokemonEvolutionState.value =
                         PokemonEvolutionState.SUCCESS(pokemonEvolutions)
@@ -52,7 +52,7 @@ class PokemonEvolutionViewModel @Inject constructor (private val repository: IPo
             _pokemonFavoriteState.value = PokemonFavoriteState.LOADING
             try {
                 val response = withContext(Dispatchers.IO) {
-                    repository.saveAsFavorite(pokemonName)
+                    pokeEvolutionUseCases.saveAsFavorite(pokemonName)
                 }
 
                 _pokemonFavoriteState.value =

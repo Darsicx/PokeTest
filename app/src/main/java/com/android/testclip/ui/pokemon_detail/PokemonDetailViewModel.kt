@@ -3,7 +3,7 @@ package com.android.testclip.ui.pokemon_detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.testclip.data.remote.retrofit.models.pokemon_info.PokemonInfoResponseDto
-import com.android.testclip.data.repository.IPokemonDetailRepository
+import com.android.testclip.domain.repository.IPokemonDetailRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

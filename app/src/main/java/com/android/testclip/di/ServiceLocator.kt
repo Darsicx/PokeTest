@@ -1,15 +1,5 @@
 package com.android.testclip.di
 
-import android.content.Context
-import com.android.testclip.data.local.room.PokemonDatabase
-import com.android.testclip.data.local.room.daos.PokemonDao
-import com.android.testclip.data.remote.retrofit.models.WebService
-import com.android.testclip.data.repository.*
-import com.android.testclip.ui.pokemon_ability.PokemonAbilityViewModelFactory
-import com.android.testclip.ui.pokemon_detail.PokemonDetailViewModelFactory
-import com.android.testclip.ui.pokemon_evolution.PokemonEvolutionViewModelFactory
-import com.android.testclip.ui.pokemons.PokemonsViewModelFactory
-
 object ServiceLocator {
 
     /*fun providePokemonDataSource(context: Context): PokemonDao {

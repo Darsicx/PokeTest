@@ -2,7 +2,7 @@ package com.android.testclip.ui.pokemon_detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.android.testclip.data.repository.IPokemonDetailRepository
+import com.android.testclip.domain.repository.IPokemonDetailRepository
 
 class PokemonDetailViewModelFactory(private val repository: IPokemonDetailRepository) :
     ViewModelProvider.Factory {

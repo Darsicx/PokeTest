@@ -1,9 +1,10 @@
-package com.android.testclip.data.repository
+package com.android.testclip.data.remote.repository
 
 import com.android.testclip.data.local.room.daos.PokemonDao
 import com.android.testclip.data.local.room.entities.PokemonEntity
 import com.android.testclip.data.remote.retrofit.models.PokemonApi
 import com.android.testclip.data.remote.retrofit.models.pokemon_results.KantoPokemonsResponse
+import com.android.testclip.domain.repository.IPokemonsRepository
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Observable
